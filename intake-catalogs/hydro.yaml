@@ -1,7 +1,7 @@
 plugins:
   source:
     - module: intake_xarray
-    
+
 sources:
 
   cgiar_pet:
@@ -72,6 +72,10 @@ sources:
       url: https://soilgrids.org/
       tags: Soil
     driver: rasterio
+    cache:
+      - argkey: urlpath
+        regex: 'pangeo-data'
+        type: file
     args:
       urlpath: "gs://pangeo-data/soilgrids/{{ variable }}_250m.tif"
       chunks: {'y': 5120, 'x': 5120}
@@ -92,6 +96,10 @@ sources:
       url: https://soilgrids.org/
       tags: Soil
     driver: rasterio
+    cache:
+      - argkey: urlpath
+        regex: 'pangeo-data'
+        type: file
     args:
       urlpath: "gs://pangeo-data/soilgrids/{{ variable }}_sl{{ '%01d' % level }}_250m.tif"
       chunks: {'y': 5120, 'x': 5120}
